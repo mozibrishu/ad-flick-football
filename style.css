@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 300px;
+  height: 250px;
+  overflow: hidden;
+  user-select: none;
+}
+
+.pp_container {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  position: relative;
+  overflow: hidden;
+}
+
+.check {
+  top: 0px;
+  left: 0px;
+  opacity: .5;
+}
+
+/* Slide_1 */
+/* .pp_slide_1 .pp_element_1 {
+  top: 0px;
+  left: 0px;
+}
+
+.pp_slide_1 .pp_element_2 {
+  top: 62px;
+  left: 56px;
+}
+
+
+.pp_slide_1 .pp_element_3 {
+  top: 202px;
+  left: 94px;
+} */
+
+
+/* slide_2 */
+.pp_slide_2 .pp_bg {
+  top: 0px;
+  left: 0px;
+}
+
+.pp_slide_2 .pp_keeper {
+  top: 78px;
+  left: 128px;
+}
+
+.pp_slide_2 .pp_hand {
+  top: 160px;
+  left: 148px;
+}
+
+.pp_slide_2 .pp_ball {
+  top: 199px;
+  left: 130px;
+}
+
+.pp_slide_2 .pp_chance {
+  top: 10px;
+  left: 5px;
+  height: 30px;
+  width: 90px;
+  background-color: #ffffff00;
+  display: flex;
+}
+
+.pp_slide_2 .pp_ball_ch {
+  height: 30px;
+  width: 30px;
+}
+
+.pp_slide_2 .pp_shadow {
+  top: 234px;
+  left: 126px;
+}
+
+.pp_slide_2 .pp_score_div {
+  top: 13px;
+  left: 240px;
+  height: 26px;
+  width: 50px;
+  background-color: #ffffff00;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+span#pp_score{
+  font-size: 30px;
+  color: yellowgreen;
+}
+
+
+/* Utility class */
+.pp_absolute {
+  position: absolute;
+}
+
+.pp_hidden {
+  display: none;
+}
+
+.pp_zeroOpacity {
+  opacity: 0;
+}
