@@ -63,6 +63,17 @@ body {
   left: 130px;
 }
 
+.pp_slide_2 .pp_ball_replica {
+  top: 203px;
+  left: 134px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: red;
+  opacity: .5;
+}
+
+
 .pp_slide_2 .pp_chance {
   top: 10px;
   left: 5px;
@@ -93,8 +104,9 @@ body {
   display: flex;
 }
 
-span#pp_score{
+span#pp_score {
   font-size: 30px;
+  font-weight: bolder;
   color: yellowgreen;
 }
 
