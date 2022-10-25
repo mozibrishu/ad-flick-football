@@ -5,7 +5,7 @@ document.querySelector('.pp_startBtn').addEventListener('click', function(){
 gsap.timeline()
 .to('.pp_startBtn',{opacity:0,display:'none',duration:.5})
 .to('.pp_hand',{display:'block',opacity:1,duration:.5})
-.fromTo('.pp_hand', {y:0},{y:-30,duration:.5,repeat:3,yoyo:true,ease: Linear.easeNone})
+.fromTo('.pp_hand', {y:0},{y:-30,duration:.5,repeat:2,yoyo:true,ease: Linear.easeNone})
 .to('.pp_hand',{display:'none',opacity:0,duration:.5},">")
 
   playing();
