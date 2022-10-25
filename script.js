@@ -57,7 +57,8 @@ Draggable.create('.pp_ball_replica', {
 function shootBall(checkX, checkY) {
   lastX = checkX * 1.722;
   clearInterval(dragInterval);
-
+  gsap.set('.pp_shadow', { display: 'none' });
+  gsap.set('.pp_ball_replica', { display: 'none' });
 
   if (checkY > minDis && checkY < overhead) {
     lastY = goalY;
@@ -82,6 +83,8 @@ function shootBall(checkX, checkY) {
 function clearBall() {
   setTimeout(() => {
     gsap.to(".pp_ball", { opacity: 1, y: 0, x: 0, scaleX: 1, scaleY: 1, duration: .001 });
+    gsap.set('.pp_shadow', { display: 'block', x: 0, y: 0 });
+    gsap.set('.pp_ball_replica', { display: 'block', x: 0, y: 0 });
     shoot = false;
     dragged = false;
   }, 600);
@@ -94,7 +97,7 @@ function clearBall() {
 function bounceBall(posX, posY) {
   console.log('baseLine:', posX, posY);
   difference = posY - bounceBaseY;
-  
+
   if (posX > 25) {
     moveX = [30, 50, 70, 90, 110];
   } else if (posX < -25) {
@@ -115,4 +118,15 @@ function bounceBall(posX, posY) {
     .to(".pp_ball", { opacity: .5, y: bounceBaseY + (difference / 3), x: posX + moveX[3], duration: .15 }, ">")
 
     .to(".pp_ball", { opacity: 0.2, y: bounceBaseY, x: posX + moveX[4], duration: .15 }, ">");
+}
+
+manAnimation(.3);
+function manAnimation(moveDuration) {
+  gsap.timeline({repeat:-1,yoyo:true,defaults: { ease: Linear.easeNone }})
+  .to('.pp_keeper',{x:50, duration: moveDuration})
+  .to('.pp_keeper',{x:-50, duration: 2*moveDuration})
+  .to('.pp_keeper',{x:50, duration: 2*moveDuration})
+  .to('.pp_keeper',{x:-50, duration: 2*moveDuration})
+  .to('.pp_keeper',{x:0, duration: moveDuration})
+
 }
