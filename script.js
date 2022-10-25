@@ -1,4 +1,19 @@
-shoot = false;
+gsap.to('.pp_startBtn',{scaleX:1.15,scaleY:1.15,duration:1,repeat:-1,yoyo:true});
+
+document.querySelector('.pp_startBtn').addEventListener('click', function(){
+gsap.to('.pp_startBtn',{opacity:0,duration:.5});
+  playing();
+})
+
+
+
+
+
+
+
+
+function playing(){
+  shoot = false;
 dragged = false;
 minDis = 15;
 overhead = 60;
@@ -177,4 +192,5 @@ function manAnimation(moveDuration) {
 function ballReduce() {
   document.getElementById('ball_' + remainingBall).style.display = 'none';
   remainingBall--;
+}
 }

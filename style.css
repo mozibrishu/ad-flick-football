@@ -31,6 +31,24 @@ body {
   top: 0px;
   left: 0px;
 }
+.pp_startBtn{
+  top: 164px;
+  left: 80px;
+  height: 55px;
+  width: 150px;
+  background-color: #ec1e28;
+  border-radius: 20px;
+  color: #fff;
+  text-align: center;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 99;
+}
 
 .pp_slide_2 .pp_keeper {
   top: 78px;
