@@ -8,6 +8,7 @@ ballSize = .3;
 shootDuration = .2;
 bounceBaseY = -85;
 goal = 0;
+remainingBall = 3;
 
 Draggable.create('.pp_ball_replica', {
   type: "x,y", edgeResistance: .99, cursor: 'auto', bounds: {
@@ -22,14 +23,12 @@ Draggable.create('.pp_ball_replica', {
       console.log('shooting...end');
       shootBall(this.x, py);
     }
-    console.log(this.x, this.y);
     gsap.to(".pp_ball_replica", { duration: .1, x: 0, y: 0 });
 
 
   },
 
   onDrag: function () {
-    // console.log(this.pointerX);
     py = Math.abs(this.y);
     if (py > minDis && py < overhead && (!dragged)) {
       dragged = true;
@@ -69,8 +68,6 @@ function shootBall(checkX, checkY) {
     lastY = missY;
   }
 
-  console.log(`shot to ${checkX} ${checkY}`);
-  console.log(`shot to ${lastX} ${lastY}`);
 
   gsap.to(".pp_ball", {
     y: lastY, x: lastX, scaleX: ballSize, scaleY: ballSize, duration: shootDuration, ease: Linear.easeNone,
@@ -82,23 +79,27 @@ function shootBall(checkX, checkY) {
       console.log("ball: ", ballRect.left);
 
       if (lastY == -175) {
-        // missAnimation;
-        console.log('missAnimation up');
-        goal--;
+        document.querySelector('.pp_goal_text').innerText = 'Missed';
+        // goal--;
+        ballReduce();
       }
       else if (ballRect.left < 72 || ballRect.left > 226) {
         console.log('missAnimation side');
-        goal--;
-      } else if ((keeperRect.left - 10) <= ballRect.left && (keeperRect.left + 50) >= ballRect.left) {
-        console.log('saved');
-        goal--;
-      } else {
-        // console.log('goal');
-        goal ++;
-        document.getElementById('pp_score').innerText = goal;
-        // gsap.to('',{})
-      }
+        document.querySelector('.pp_goal_text').innerText = 'Missed';
+        // goal--;
+        ballReduce();
 
+      } else if ((keeperRect.left - 10) <= ballRect.left && (keeperRect.left + 40) >= ballRect.left) {
+        console.log('saved');
+        document.querySelector('.pp_goal_text').innerText = 'Blocked';
+        // goal--;
+        ballReduce();
+
+      } else {
+        document.querySelector('.pp_goal_text').innerText = 'Goal';
+        goal++;
+      }
+      goalAnimation();
       document.getElementById('pp_score').innerText = goal;
 
 
@@ -107,31 +108,29 @@ function shootBall(checkX, checkY) {
     }
   });
 }
+function goalAnimation() {
+  gsap.fromTo('.pp_goal_text', { delay: .3, display: 'none', opacity: 0, scale: .5 }, { display: 'flex', opacity: 1, scale: 1, duration: .5 });
+  gsap.set('.pp_goal_state', { display: 'flex' });
+  gsap.to('.pp_goal_text', { delay: 1, display: 'none', opacity: 0, scale: .5, duration: .3 });
+}
 
-
-// Offset checking
-// setInterval(() => {
-//   var keeperRect = keeper.getBoundingClientRect();
-//       console.log("keeper: ", keeperRect.left);
-//       var ballRect = ball.getBoundingClientRect();
-//       console.log("ball: ", ballRect.left);
-
-
-//       if ((keeperRect.left-10) <= ballRect.left && (keeperRect.left + 40) >= ballRect.left) {
-// console.log('saved');
-//       }else{
-//         console.log('left');
-//       }
-// }, 1000);
 
 function clearBall() {
-  setTimeout(() => {
-    gsap.to(".pp_ball", { opacity: 1, y: 0, x: 0, scaleX: 1, scaleY: 1, duration: .001 });
-    gsap.set('.pp_shadow', { display: 'block', x: 0, y: 0 });
-    gsap.set('.pp_ball_replica', { display: 'block', x: 0, y: 0 });
-    shoot = false;
-    dragged = false;
-  }, 600);
+  if (remainingBall > 0) {
+    setTimeout(() => {
+      gsap.to(".pp_ball", { opacity: 1, y: 0, x: 0, scaleX: 1, scaleY: 1, duration: .001 });
+      gsap.set('.pp_shadow', { display: 'block', x: 0, y: 0 });
+      gsap.set('.pp_ball_replica', { display: 'block', x: 0, y: 0 });
+      shoot = false;
+      dragged = false;
+    }, 600);
+  } else {
+    console.log('ball empty');
+    gsap.fromTo('.pp_finalScore', { delay: .3, display: 'none', opacity: 0, scale: .5 }, { display: 'flex', opacity: 1, scale: 1, duration: .5 });
+    document.getElementById('finalScore').innerText = goal;
+
+  }
+
 }
 
 
@@ -173,4 +172,9 @@ function manAnimation(moveDuration) {
     .to('.pp_keeper', { x: -50, duration: 2 * moveDuration })
     .to('.pp_keeper', { x: 0, duration: moveDuration })
 
+}
+
+function ballReduce() {
+  document.getElementById('ball_' + remainingBall).style.display = 'none';
+  remainingBall--;
 }

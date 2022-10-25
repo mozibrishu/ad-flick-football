@@ -27,7 +27,7 @@ body {
 
 
 /* slide_2 */
-.pp_slide_2 .pp_bg {
+.pp_bg {
   top: 0px;
   left: 0px;
 }
@@ -57,6 +57,41 @@ body {
   opacity: .5;
 }
 
+.pp_slide_2 .pp_goal_state {
+  top: 0px;
+  left: 0px;
+  width: 300px;
+  height: 250px;
+  align-items: center;
+  justify-content: center;
+}
+
+.pp_slide_2 .pp_goal_text {
+  color: #174500;
+  font-size: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #cccccc66;
+  height: 100px;
+  width: 250px;
+  border-radius: 20px;
+}
+
+.pp_slide_2 .pp_finalScore {
+  color: #174500;
+  font-size: 50px;
+  align-items: center;
+  justify-content: center;
+  background-color: #ccccccff;
+  height: 200px;
+  width: 250px;
+  border-radius: 20px;
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  flex-direction: column;
+}
 
 .pp_slide_2 .pp_chance {
   top: 10px;

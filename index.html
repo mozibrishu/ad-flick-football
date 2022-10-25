@@ -11,23 +11,30 @@
 
 <body>
   <div class="pp_container">
+    <img src="./slide2/bg.jpg" alt="" class="pp_bg pp_absolute" draggable="false">
     <div class="pp_slide_1 pp_hidden">
       <!-- <img src="images/bg.jpg" alt="" class="pp_element_1 pp_absolute"> -->
     </div>
     <div class="pp_slide_2">
-      <img src="./slide2/bg.jpg" alt="" class="pp_bg pp_absolute" draggable="false">
       <img src="./slide2/keeper.png" alt="" class="pp_keeper pp_absolute"draggable="false">
       <img src="./slide2/hand.png" alt="" class="pp_hand pp_absolute pp_hidden"draggable="false">
       <img src="./slide2/shadow.png" alt="" class="pp_shadow pp_absolute"draggable="false">
       <img src="./slide2/ball.png" alt="" class="pp_ball pp_absolute"draggable="false">
       <div class="pp_ball_replica pp_absolute"></div>
+      <div class="pp_goal_state pp_absolute pp_hidden"><div class="pp_goal_text  pp_hidden pp_zeroOpacity">
+        GOAL
+      </div></div>
       <div class="pp_chance pp_absolute">
-        <img src="./slide2/ball.png" alt="" class="pp_ball_ch"draggable="false">
-        <img src="./slide2/ball.png" alt="" class="pp_ball_ch"draggable="false">
-        <img src="./slide2/ball.png" alt="" class="pp_ball_ch"draggable="false">
+        <img src="./slide2/ball.png" alt="" class="pp_ball_ch" id="ball_1" draggable="false">
+        <img src="./slide2/ball.png" alt="" class="pp_ball_ch" id="ball_2" draggable="false">
+        <img src="./slide2/ball.png" alt="" class="pp_ball_ch" id="ball_3"draggable="false">
       </div>
       <div class="pp_score_div pp_absolute"draggable="false">
 <span id="pp_score">0</span>
+      </div>
+      <div class="pp_finalScore pp_hidden pp_zeroOpacity">
+        <span>Your Score</span>
+        <span id="finalScore">26</span>
       </div>
 
       <!-- <img src="./3Goal.jpg" alt="" class="check pp_absolute"> -->
