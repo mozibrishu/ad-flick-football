@@ -1,7 +1,7 @@
 gsap.to('.pp_startBtn',{scaleX:1.15,scaleY:1.15,duration:1,repeat:-1,yoyo:true});
 
 document.querySelector('.pp_startBtn').addEventListener('click', function(){
-gsap.to('.pp_startBtn',{opacity:0,duration:.5});
+gsap.to('.pp_startBtn',{opacity:0,display:'none',duration:.5});
   playing();
 })
 
