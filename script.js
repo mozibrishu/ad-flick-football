@@ -7,6 +7,7 @@ goalY = -135;
 ballSize = .3;
 shootDuration = .2;
 bounceBaseY = -85;
+goal = 0;
 
 Draggable.create('.pp_ball_replica', {
   type: "x,y", edgeResistance: .99, cursor: 'auto', bounds: {
@@ -80,12 +81,25 @@ function shootBall(checkX, checkY) {
       var ballRect = ball.getBoundingClientRect();
       console.log("ball: ", ballRect.left);
 
-
-      if ((keeperRect.left-10) <= ballRect.left && (keeperRect.left + 40) >= ballRect.left) {
-console.log('saved');
-      }else{
-        console.log('left');
+      if (lastY == -175) {
+        // missAnimation;
+        console.log('missAnimation up');
+        goal--;
       }
+      else if (ballRect.left < 72 || ballRect.left > 226) {
+        console.log('missAnimation side');
+        goal--;
+      } else if ((keeperRect.left - 10) <= ballRect.left && (keeperRect.left + 50) >= ballRect.left) {
+        console.log('saved');
+        goal--;
+      } else {
+        // console.log('goal');
+        goal ++;
+        document.getElementById('pp_score').innerText = goal;
+        // gsap.to('',{})
+      }
+
+      document.getElementById('pp_score').innerText = goal;
 
 
       bounceBall(lastX, lastY);
@@ -94,10 +108,21 @@ console.log('saved');
   });
 }
 
+
+// Offset checking
 // setInterval(() => {
-//   var rect = keeper.getBoundingClientRect();
-//       console.log("keeper: ",rect.top,rect.left);
-// }, 100);
+//   var keeperRect = keeper.getBoundingClientRect();
+//       console.log("keeper: ", keeperRect.left);
+//       var ballRect = ball.getBoundingClientRect();
+//       console.log("ball: ", ballRect.left);
+
+
+//       if ((keeperRect.left-10) <= ballRect.left && (keeperRect.left + 40) >= ballRect.left) {
+// console.log('saved');
+//       }else{
+//         console.log('left');
+//       }
+// }, 1000);
 
 function clearBall() {
   setTimeout(() => {
