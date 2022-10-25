@@ -4,7 +4,7 @@ minDis = 15;
 overhead = 60;
 missY = -175;
 goalY = -135;
-ballSize = .35;
+ballSize = .3;
 shootDuration = .2;
 bounceBaseY = -85;
 
@@ -28,7 +28,7 @@ Draggable.create('.pp_ball_replica', {
   },
 
   onDrag: function () {
-    console.log(this.pointerX);
+    // console.log(this.pointerX);
     py = Math.abs(this.y);
     if (py > minDis && py < overhead && (!dragged)) {
       dragged = true;
@@ -39,7 +39,7 @@ Draggable.create('.pp_ball_replica', {
 
           shoot = true;
         }
-      }, 800);
+      }, 400);
     }
     // up: for drag shot
 
@@ -52,6 +52,8 @@ Draggable.create('.pp_ball_replica', {
   }
 })
 
+keeper = document.querySelector('.pp_keeper')
+ball = document.querySelector('.pp_ball')
 
 
 function shootBall(checkX, checkY) {
@@ -72,13 +74,30 @@ function shootBall(checkX, checkY) {
   gsap.to(".pp_ball", {
     y: lastY, x: lastX, scaleX: ballSize, scaleY: ballSize, duration: shootDuration, ease: Linear.easeNone,
     onComplete: function () {
-      console.log(lastX, lastY);
+
+      var keeperRect = keeper.getBoundingClientRect();
+      console.log("keeper: ", keeperRect.left);
+      var ballRect = ball.getBoundingClientRect();
+      console.log("ball: ", ballRect.left);
+
+
+      if ((keeperRect.left-10) <= ballRect.left && (keeperRect.left + 40) >= ballRect.left) {
+console.log('saved');
+      }else{
+        console.log('left');
+      }
+
+
       bounceBall(lastX, lastY);
       // clearBall();
     }
   });
 }
 
+// setInterval(() => {
+//   var rect = keeper.getBoundingClientRect();
+//       console.log("keeper: ",rect.top,rect.left);
+// }, 100);
 
 function clearBall() {
   setTimeout(() => {
@@ -120,13 +139,13 @@ function bounceBall(posX, posY) {
     .to(".pp_ball", { opacity: 0.2, y: bounceBaseY, x: posX + moveX[4], duration: .15 }, ">");
 }
 
-manAnimation(.3);
+manAnimation(.25);
 function manAnimation(moveDuration) {
-  gsap.timeline({repeat:-1,yoyo:true,defaults: { ease: Linear.easeNone }})
-  .to('.pp_keeper',{x:50, duration: moveDuration})
-  .to('.pp_keeper',{x:-50, duration: 2*moveDuration})
-  .to('.pp_keeper',{x:50, duration: 2*moveDuration})
-  .to('.pp_keeper',{x:-50, duration: 2*moveDuration})
-  .to('.pp_keeper',{x:0, duration: moveDuration})
+  gsap.timeline({ repeat: -1, yoyo: true, defaults: { ease: Linear.easeNone } })
+    .to('.pp_keeper', { x: 50, duration: moveDuration })
+    .to('.pp_keeper', { x: -50, duration: 2 * moveDuration })
+    .to('.pp_keeper', { x: 50, duration: 2 * moveDuration })
+    .to('.pp_keeper', { x: -50, duration: 2 * moveDuration })
+    .to('.pp_keeper', { x: 0, duration: moveDuration })
 
 }
