@@ -41,7 +41,7 @@ function playing() {
   remainingBall = 3;
   document.getElementById('pp_score').innerText = goal;
   gsap.set(['#ball_1', '#ball_2', '#ball_3'], { display: 'flex' });
-  gsap.set(['.pp_ball_replica', '.pp_ball'], { display: 'block',opacity:1,x:0,y:0,scaleX:1,scaleY:1 });
+  gsap.set(['.pp_ball_replica', '.pp_ball','.pp_shadow'], { display: 'block',opacity:1,x:0,y:0,scaleX:1,scaleY:1 });
 
   Draggable.create('.pp_ball_replica', {
     type: "x,y", edgeResistance: .99, cursor: 'auto', bounds: {
@@ -116,13 +116,13 @@ function playing() {
           // goal--;
           ballReduce();
         }
-        else if (ballRect.left < 72 || ballRect.left > 226) {
+        else if (ballRect.left < 73 || ballRect.left > 222) {
           console.log('missAnimation side');
           document.querySelector('.pp_goal_text').innerText = 'Missed';
           // goal--;
           ballReduce();
 
-        } else if ((keeperRect.left - 10) <= ballRect.left && (keeperRect.left + 40) >= ballRect.left) {
+        } else if ((keeperRect.left - 5) <= ballRect.left && (keeperRect.left + 40) >= ballRect.left) {
           console.log('saved');
           document.querySelector('.pp_goal_text').innerText = 'Blocked';
           // goal--;
@@ -197,7 +197,7 @@ function playing() {
       .to(".pp_ball", { opacity: 0.2, y: bounceBaseY, x: posX + moveX[4], duration: .15 }, ">");
   }
 
-  manAnimation(.25);
+  manAnimation(.4);
   function manAnimation(moveDuration) {
     gsap.timeline({ repeat: -1, yoyo: true, defaults: { ease: Linear.easeNone } })
       .to('.pp_keeper', { x: 50, duration: moveDuration })
